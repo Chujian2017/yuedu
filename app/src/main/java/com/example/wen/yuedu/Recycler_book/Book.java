@@ -12,12 +12,15 @@ public class Book {
     private String name;
     private int bookId;
     private int bookNum;
+    private int readNum;
     private BitmapDrawable bitmap;
-    public Book(String name,int bookId,int bookNum,BitmapDrawable bitmap){
+    public Book(String name,int bookId,int bookNum,int readNum,BitmapDrawable bitmap){
         this.name=name;
         this.bookId=bookId;
         this.bookNum=bookNum;
         this.bitmap=bitmap;
+        this.readNum=readNum;
+
     }
     public String getName(){
         return name;
@@ -29,4 +32,5 @@ public class Book {
         return bookNum;
     }
     public BitmapDrawable getBitmap(){return bitmap;}
+    public int getReadNum(){return readNum;}
 }

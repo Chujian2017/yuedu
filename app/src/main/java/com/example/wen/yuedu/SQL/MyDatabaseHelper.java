@@ -14,7 +14,8 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
             +"id integer primary key autoincrement,"
             +"image BLOB,"
             +"bookName text,"
-            +"bookNum integer)";
+            +"bookNum integer,"
+            +"readNum integer)";
     private Context mContext;
 
     public MyDatabaseHelper(Context context, String name,

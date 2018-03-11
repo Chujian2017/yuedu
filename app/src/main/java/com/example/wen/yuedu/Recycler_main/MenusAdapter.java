@@ -2,7 +2,6 @@ package com.example.wen.yuedu.Recycler_main;
 
 import android.content.Context;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +14,7 @@ import com.example.wen.yuedu.R;
 import com.example.wen.yuedu.Recycler_book.BookActivity;
 import com.example.wen.yuedu.SQL.SQLActivity;
 import com.example.wen.yuedu.AddActivity;
-import com.example.wen.yuedu.deleteActivity;
+import com.example.wen.yuedu.deleteBook.deleteActivity;
 
 import java.util.List;
 

@@ -24,7 +24,7 @@ import java.util.List;
 import java.util.Random;
 
 public class BookActivity extends BaseActivity {
-    private List<Book> fruitList = new ArrayList<>();
+    private List<Book> BookList = new ArrayList<>();
     MyDatabaseHelper dHelper;
     public BookActivity(){}
     public BookActivity(MyDatabaseHelper dbHelper){
@@ -43,7 +43,7 @@ public class BookActivity extends BaseActivity {
         StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(
                 3, StaggeredGridLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
-        BookAdapter adapter = new BookAdapter(fruitList);
+        BookAdapter adapter = new BookAdapter(BookList,BookActivity.this);
         recyclerView.setAdapter(adapter);
 
     }
@@ -56,50 +56,17 @@ public class BookActivity extends BaseActivity {
             do {
                 String name = cursor.getString(cursor.getColumnIndex("bookName"));
                 int bookNum = cursor.getInt(cursor.getColumnIndex("bookNum"));
+                int readNum = cursor.getInt(cursor.getColumnIndex("readNum"));
                 byte[] blob = cursor.getBlob(cursor.getColumnIndex("image"));
                 Bitmap bmp = BitmapFactory.decodeByteArray(blob, 0, blob.length);
                 BitmapDrawable bd = new BitmapDrawable(bmp);
-                Book book = new Book(name, -1, bookNum, bd);
-                fruitList.add(book);
+                Book book = new Book(name, -1, bookNum,readNum,bd);
+                BookList.add(book);
             } while (cursor.moveToNext());
         }cursor.close();
-        for (int i = 0; i < 2; i++) {
-            Book apple = new Book(getRandomLengthName("Apple"), R.drawable.apple_pic, 10,null);
-            fruitList.add(apple);
-            Book banana = new Book(getRandomLengthName("Banana"), R.drawable.banana_pic, 10,null);
-            fruitList.add(banana);
-            Book orange = new Book(getRandomLengthName("Orange"), R.drawable.orange_pic, 10,null);
-            fruitList.add(orange);
-            Book watermelon = new Book(getRandomLengthName("Watermelon"), R.drawable.watermelon_pic, 10,null);
-            fruitList.add(watermelon);
-            Book pear = new Book(getRandomLengthName("Pear"), R.drawable.pear_pic, 10,null);
-            fruitList.add(pear);
-            Book grape = new Book(getRandomLengthName("Grape"), R.drawable.grape_pic, 20,null);
-            fruitList.add(grape);
-            Book pineapple = new Book(getRandomLengthName("Pineapple"), R.drawable.pineapple_pic, 25,null);
-            fruitList.add(pineapple);
-            Book strawberry = new Book(getRandomLengthName("Strawberry"), R.drawable.strawberry_pic, 30,null);
-            fruitList.add(strawberry);
-            Book cherry = new Book(getRandomLengthName("Cherry"), R.drawable.cherry_pic, 40,null);
-            fruitList.add(cherry);
-            Book mango = new Book(getRandomLengthName("Mango"), R.drawable.mango_pic, 50,null);
-            fruitList.add(mango);
-
-        }
-    }
-
-    private String getRandomLengthName(String name) {
-        Random random = new Random();
-        //int length=random.nextInt(20)-1;
-        int length = 1;
-        StringBuilder builder = new StringBuilder();
-        for (int i = 0; i < length; i++) {
-            builder.append(name);
-        }
-        return builder.toString();
     }
     public List<Book> getList(){
-        return fruitList;
+        return BookList;
     }
 
 }

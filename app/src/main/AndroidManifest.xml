@@ -31,7 +31,7 @@
             android:name=".AddActivity"
             android:label="添加书籍" />
         <activity
-            android:name=".deleteActivity"
+            android:name=".deleteBook.deleteActivity"
             android:label="删除书籍" />
 
         <provider

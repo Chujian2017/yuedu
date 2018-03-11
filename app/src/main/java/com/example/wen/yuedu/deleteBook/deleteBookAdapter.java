@@ -1,4 +1,4 @@
-package com.example.wen.yuedu;
+package com.example.wen.yuedu.deleteBook;
 
 /**
  * Created by wen on 2018/3/9.
@@ -17,6 +17,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.wen.yuedu.R;
 import com.example.wen.yuedu.Recycler_book.Book;
 import com.example.wen.yuedu.SQL.MyDatabaseHelper;
 
@@ -94,7 +95,8 @@ public class deleteBookAdapter extends RecyclerView.Adapter<deleteBookAdapter.Vi
         }
         holder.bookName.setText(book.getName());
         Log.d(TAG, book.getName());
-        holder.progressBar.setProgress(book.getNum());
+        holder.progressBar.setMax(book.getNum());
+        holder.progressBar.setProgress(book.getReadNum());
     }
 
     @Override
