@@ -14,12 +14,15 @@ public class Book {
     private int bookNum;
     private int readNum;
     private BitmapDrawable bitmap;
-    public Book(String name,int bookId,int bookNum,int readNum,BitmapDrawable bitmap){
+    private String path;
+    public Book(String name,int bookId,int bookNum,int readNum,BitmapDrawable bitmap,String path){
         this.name=name;
         this.bookId=bookId;
         this.bookNum=bookNum;
         this.bitmap=bitmap;
         this.readNum=readNum;
+        this.path=path;
+
 
     }
     public String getName(){
@@ -33,4 +36,5 @@ public class Book {
     }
     public BitmapDrawable getBitmap(){return bitmap;}
     public int getReadNum(){return readNum;}
+    public String getUri(){return path;}
 }

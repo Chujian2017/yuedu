@@ -248,6 +248,7 @@ public class AddActivity extends BaseActivity {
         int num=Integer.parseInt(number);
         values.put("bookNum",num);
         values.put("readNum",0);
+        values.put("path","a".toString());
         db.insert("Book",null,values);
     }
 

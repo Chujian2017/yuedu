@@ -67,8 +67,11 @@ public class deleteBookAdapter extends RecyclerView.Adapter<deleteBookAdapter.Vi
                 int position = holder.getAdapterPosition();
                 Book fruit = mBookList.get(position);
                 SQLiteDatabase db=dHelper.getWritableDatabase();
-                db.delete("Book","id=?",new String[fruit.getImageId()]);
+                String[]bookName={fruit.getName()};
+                db.delete("Book","bookName=?",bookName);
                 Toast.makeText(view.getContext(), "删除书籍:" + fruit.getName()+" 成功！", Toast.LENGTH_SHORT).show();
+
+
             }
         });
         holder.bookImage.setOnClickListener(new View.OnClickListener() {

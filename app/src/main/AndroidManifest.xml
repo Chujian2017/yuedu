@@ -11,7 +11,6 @@
     <!-- 在sdcard中创建/删除文件的权限 -->
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
 
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -33,11 +32,11 @@
             android:name=".activity.BookActivity"
             android:label="我的书架" />
         <activity
-            android:name=".db.SQLActivity"
+            android:name=".activity.ManagerActivity"
             android:label="书籍管理" />
         <activity
             android:name=".activity.AddActivity"
-            android:label="添加书籍" />
+            android:label="创建书籍" />
         <activity
             android:name=".activity.deleteActivity"
             android:label="删除书籍" />
@@ -52,7 +51,8 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
-        <activity android:name=".activity.ReadPDFActivity"></activity>
+        <activity android:name=".activity.ReadPDFActivity" />
+        <activity android:name=".activity.AddPDFActivity"></activity>
     </application>
 
 </manifest>

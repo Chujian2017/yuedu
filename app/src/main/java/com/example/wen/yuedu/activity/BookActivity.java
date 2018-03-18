@@ -9,6 +9,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.util.Log;
 
 
 import com.example.wen.yuedu.base.BaseActivity;
@@ -24,6 +25,7 @@ public class BookActivity extends BaseActivity {
     private List<Book> BookList = new ArrayList<>();
     MyDatabaseHelper dHelper;
     public BookActivity(){}
+    BookAdapter adapter;
     public BookActivity(MyDatabaseHelper dbHelper){
         this.dHelper=dbHelper;
     }
@@ -36,14 +38,24 @@ public class BookActivity extends BaseActivity {
         dHelper=new MyDatabaseHelper(this,"BookStore.db",null,1);
 
         initBooks();
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        RecyclerView  recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(
                 3, StaggeredGridLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
-        BookAdapter adapter = new BookAdapter(BookList,BookActivity.this);
+        adapter = new BookAdapter(BookList,BookActivity.this);
         recyclerView.setAdapter(adapter);
 
     }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        adapter=new BookAdapter(BookList,BookActivity.this);
+        adapter.notifyDataSetChanged(); //刷新
+        Log.d("BookActivity", "onRestart: ");
+    }
+
+
 
     public void initBooks() {
         SQLiteDatabase db = dHelper.getWritableDatabase();
@@ -57,7 +69,8 @@ public class BookActivity extends BaseActivity {
                 byte[] blob = cursor.getBlob(cursor.getColumnIndex("image"));
                 Bitmap bmp = BitmapFactory.decodeByteArray(blob, 0, blob.length);
                 BitmapDrawable bd = new BitmapDrawable(bmp);
-                Book book = new Book(name, -1, bookNum,readNum,bd);
+                String path=cursor.getString(cursor.getColumnIndex("path"));
+                Book book = new Book(name, -1, bookNum,readNum,bd,path);
                 BookList.add(book);
             } while (cursor.moveToNext());
         }cursor.close();

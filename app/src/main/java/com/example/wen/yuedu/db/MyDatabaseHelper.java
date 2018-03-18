@@ -15,7 +15,8 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
             +"image BLOB,"
             +"bookName text,"
             +"bookNum integer,"
-            +"readNum integer)";
+            +"readNum integer,"
+            +"path text)";
     private Context mContext;
 
     public MyDatabaseHelper(Context context, String name,

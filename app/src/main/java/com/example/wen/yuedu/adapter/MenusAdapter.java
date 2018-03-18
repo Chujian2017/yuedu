@@ -9,11 +9,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.wen.yuedu.activity.AddPDFActivity;
 import com.example.wen.yuedu.model.Menus;
 import com.example.wen.yuedu.db.MyDatabaseHelper;
 import com.example.wen.yuedu.R;
 import com.example.wen.yuedu.activity.BookActivity;
-import com.example.wen.yuedu.db.SQLActivity;
+import com.example.wen.yuedu.activity.ManagerActivity;
 import com.example.wen.yuedu.activity.AddActivity;
 import com.example.wen.yuedu.activity.deleteActivity;
 
@@ -58,7 +59,7 @@ public class MenusAdapter extends RecyclerView.Adapter<MenusAdapter.ViewHolder> 
                         context.startActivity(intent);
                         break;
                     case R.drawable.add:
-                        Intent intent2=new Intent(context,SQLActivity.class);
+                        Intent intent2=new Intent(context,ManagerActivity.class);
                         context.startActivity(intent2);
                         break;
                     case R.drawable.exit:
@@ -78,6 +79,10 @@ public class MenusAdapter extends RecyclerView.Adapter<MenusAdapter.ViewHolder> 
                         Intent intent4=new Intent(context,deleteActivity.class);
                         context.startActivity(intent4);
                         break;
+                    case R.drawable.addbook1:
+                        Intent intent5=new Intent(context, AddPDFActivity.class);
+                        context.startActivity(intent5);
+                        break;
                 }
             }
         });
@@ -92,7 +97,7 @@ public class MenusAdapter extends RecyclerView.Adapter<MenusAdapter.ViewHolder> 
                         context.startActivity(intent);
                         break;
                     case R.drawable.add:
-                        Intent intent2=new Intent(context,SQLActivity.class);
+                        Intent intent2=new Intent(context,ManagerActivity.class);
                         context.startActivity(intent2);
                         break;
                     case R.drawable.exit:
@@ -112,6 +117,10 @@ public class MenusAdapter extends RecyclerView.Adapter<MenusAdapter.ViewHolder> 
                         Intent intent4=new Intent(context,deleteActivity.class);
                         context.startActivity(intent4);
                        break;
+                    case R.drawable.addbook1:
+                        Intent intent5=new Intent(context, AddPDFActivity.class);
+                        context.startActivity(intent5);
+                        break;
 
 
             }

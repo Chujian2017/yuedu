@@ -44,6 +44,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
     protected SQLiteDatabase readNumdb;
 
 
+
     static class ViewHolder extends RecyclerView.ViewHolder{
         View bookView;
         ImageView bookImage;
@@ -92,7 +93,10 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(context, ReadPDFActivity.class);
+                String bookName=holder.bookName.getText().toString();
+                intent.putExtra("bookName",bookName);
                 context.startActivity(intent);
+
             }
         });
         return holder;
