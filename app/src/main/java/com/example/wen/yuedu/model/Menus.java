@@ -4,7 +4,7 @@ package com.example.wen.yuedu.model;
  * Created by wen on 2018/3/6.
  */
 
-public class Menus {
+public class Menus {//菜单
     private String name;
     private int MenuId;
     public Menus(String name,int MenuId){

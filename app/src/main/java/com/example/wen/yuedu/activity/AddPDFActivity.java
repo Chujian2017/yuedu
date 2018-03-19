@@ -23,14 +23,12 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 
 import android.os.Bundle;
-import android.support.v4.content.FileProvider;
-import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
 
 import com.example.wen.yuedu.R;
-import com.example.wen.yuedu.SPUtils;
+import com.example.wen.yuedu.utils.SPUtils;
 import com.example.wen.yuedu.base.BaseActivity;
 import com.example.wen.yuedu.db.MyDatabaseHelper;
 import com.github.barteksc.pdfviewer.PDFView;
@@ -133,7 +131,9 @@ public class AddPDFActivity extends BaseActivity {
                         }
                     })
                     .load();
-
+            Toast.makeText(AddPDFActivity.this, "导入成功！", Toast.LENGTH_SHORT).show();
+        }else{
+            finish();
         }
 
 
@@ -161,10 +161,10 @@ public class AddPDFActivity extends BaseActivity {
             int height = pdfiumCore.getPageHeightPoint(pdfDocument, pageNum);
             // ARGB_8888 - best quality, high memory usage, higher possibility of OutOfMemoryError
             // RGB_565 - little worse quality, twice less memory usage
-            cbitmap = Bitmap.createBitmap(width / 2, height / 2,
+            cbitmap = Bitmap.createBitmap(400, 500,
                     Bitmap.Config.RGB_565);
             pdfiumCore.renderPageBitmap(pdfDocument, cbitmap, pageNum, 0, 0,
-                    width / 2, height / 2);
+                    400, 500);
             //if you need to render annotations and form fields, you can use
             //the same method above adding 'true' as last param
             //iv.setImageBitmap(bitmap);

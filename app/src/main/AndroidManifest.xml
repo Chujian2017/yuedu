@@ -13,20 +13,17 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:icon="@drawable/pdf"
+        android:label="悦读"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".activity.MainActivity"
-            android:label="悦读" />
-        <activity android:name=".activity.LoginActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+        <activity
+            android:name=".activity.MainActivity">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>/>
         </activity>
         <activity
             android:name=".activity.BookActivity"
@@ -34,9 +31,6 @@
         <activity
             android:name=".activity.ManagerActivity"
             android:label="书籍管理" />
-        <activity
-            android:name=".activity.AddActivity"
-            android:label="创建书籍" />
         <activity
             android:name=".activity.deleteActivity"
             android:label="删除书籍" />

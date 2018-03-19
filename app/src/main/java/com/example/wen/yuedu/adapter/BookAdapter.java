@@ -1,13 +1,10 @@
 package com.example.wen.yuedu.adapter;
 
-import android.Manifest;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.database.sqlite.SQLiteDatabase;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,7 +15,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 
-import com.example.wen.yuedu.activity.BookActivity;
+
 import com.example.wen.yuedu.dialog.InputDialog;
 import com.example.wen.yuedu.R;
 import com.example.wen.yuedu.activity.ReadPDFActivity;
@@ -75,14 +72,15 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
                 ReadNumvalues=new ContentValues();
                 int  position=holder.getAdapterPosition();
                 readNum=mBookList.get(position);
-                InputDialog dialog = new InputDialog(context, new InputDialog.OnEditInputFinishedListener() {
+                InputDialog dialog = new InputDialog(context, readNum.getBookId(),new InputDialog.OnEditInputFinishedListener() {
                     @Override
-                    public void editInputFinished(String password) {
+                    public void editInputFinished(String password,String name) {
                         progress = Integer.parseInt(password);
                         holder.progressBar.setProgress(progress);
                         ReadNumvalues.put("readNum",progress);
-                        String[]Name={readNum.getName()};
-                        readNumdb.update("Book",ReadNumvalues,"bookName=?",Name);
+                        ReadNumvalues.put("bookName",name);
+                        String[]BookId={String.valueOf(readNum.getBookId())};
+                        readNumdb.update("Book",ReadNumvalues,"id=?",BookId);
                     }
                 });
                 dialog.show();
@@ -92,9 +90,15 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
         holder.bookImage.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
+                dHelper=new MyDatabaseHelper(context,"BookStore.db",null,1);
+                readNumdb=dHelper.getWritableDatabase();
+                ReadNumvalues=new ContentValues();
+                int  position=holder.getAdapterPosition();
+                readNum=mBookList.get(position);
+                int id=readNum.getBookId();
+                String bookId=String.valueOf(id);
                 Intent intent=new Intent(context, ReadPDFActivity.class);
-                String bookName=holder.bookName.getText().toString();
-                intent.putExtra("bookName",bookName);
+                intent.putExtra("bookId",bookId);
                 context.startActivity(intent);
 
             }
@@ -105,21 +109,18 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Book book = mBookList.get(position);
-        if (book.getImageId() != -1) {
-            holder.bookImage.setImageResource(book.getImageId());
-        } else {
-            holder.bookImage.setImageBitmap(book.getBitmap().getBitmap());
-        }
-            holder.bookName.setText(book.getName());
+        holder.bookImage.setImageBitmap(book.getBitmap().getBitmap());
+        holder.bookName.setText(book.getName());
         Log.d(TAG, book.getName());
-            holder.progressBar.setMax(book.getNum());
-            holder.progressBar.setProgress(book.getReadNum());
-        }
+        holder.progressBar.setMax(book.getNum());
+        holder.progressBar.setProgress(book.getReadNum());
+    }
 
         @Override
         public int getItemCount() {
             return mBookList.size();
         }
+
 
 
 }

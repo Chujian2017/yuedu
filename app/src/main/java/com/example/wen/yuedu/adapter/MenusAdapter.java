@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.wen.yuedu.activity.AddPDFActivity;
 import com.example.wen.yuedu.model.Menus;
@@ -15,7 +16,7 @@ import com.example.wen.yuedu.db.MyDatabaseHelper;
 import com.example.wen.yuedu.R;
 import com.example.wen.yuedu.activity.BookActivity;
 import com.example.wen.yuedu.activity.ManagerActivity;
-import com.example.wen.yuedu.activity.AddActivity;
+
 import com.example.wen.yuedu.activity.deleteActivity;
 
 import java.util.List;
@@ -65,15 +66,8 @@ public class MenusAdapter extends RecyclerView.Adapter<MenusAdapter.ViewHolder> 
                     case R.drawable.exit:
                         System.exit(1);
                         break;
-                    case R.drawable.database:
-                        if(dbHelper==null){
-                            dbHelper = new MyDatabaseHelper(context, "BookStore.db", null, 1);
-                            dbHelper.getWritableDatabase();
-                        }
-                        break;
-                    case R.drawable.addbook2:
-                        Intent intent3=new Intent(context,AddActivity.class);
-                        context.startActivity(intent3);
+                    case R.drawable.net:
+                        Toast.makeText(context,"施工ing",Toast.LENGTH_SHORT).show();
                         break;
                     case R.drawable.delete:
                         Intent intent4=new Intent(context,deleteActivity.class);
@@ -103,15 +97,9 @@ public class MenusAdapter extends RecyclerView.Adapter<MenusAdapter.ViewHolder> 
                     case R.drawable.exit:
                         System.exit(1);
                         break;
-                    case R.drawable.database:
-                        if(dbHelper==null){
-                            dbHelper = new MyDatabaseHelper(context, "BookStore.db", null, 1);
-                            dbHelper.getWritableDatabase();
-                        }
-                        break;
-                    case R.drawable.addbook2:
-                        Intent intent3=new Intent(context,AddActivity.class);
-                        context.startActivity(intent3);
+
+                    case R.drawable.net:
+                        Toast.makeText(context,"施工ing",Toast.LENGTH_SHORT).show();
                         break;
                     case R.drawable.delete:
                         Intent intent4=new Intent(context,deleteActivity.class);

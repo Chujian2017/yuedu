@@ -28,7 +28,7 @@ public class Book {
     public String getName(){
         return name;
     }
-    public int getImageId(){
+    public int getBookId(){
         return bookId;
     }
     public int getNum(){

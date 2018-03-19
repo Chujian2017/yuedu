@@ -67,8 +67,9 @@ public class deleteBookAdapter extends RecyclerView.Adapter<deleteBookAdapter.Vi
                 int position = holder.getAdapterPosition();
                 Book fruit = mBookList.get(position);
                 SQLiteDatabase db=dHelper.getWritableDatabase();
-                String[]bookName={fruit.getName()};
-                db.delete("Book","bookName=?",bookName);
+                Log.d(TAG, String.valueOf(fruit.getBookId()));
+                String[]bookId={String.valueOf(fruit.getBookId())};
+                db.delete("Book","id=?",bookId);
                 Toast.makeText(view.getContext(), "删除书籍:" + fruit.getName()+" 成功！", Toast.LENGTH_SHORT).show();
 
 
@@ -80,8 +81,8 @@ public class deleteBookAdapter extends RecyclerView.Adapter<deleteBookAdapter.Vi
                 int position = holder.getAdapterPosition();
                 Book fruit = mBookList.get(position);
                 SQLiteDatabase db=dHelper.getWritableDatabase();
-                String[]bookName={fruit.getName()};
-                db.delete("Book","bookName=?",bookName);
+                String[]bookId={String.valueOf(fruit.getBookId())};
+                db.delete("Book","id=?",bookId);
                 Toast.makeText(view.getContext(), "删除书籍:" + fruit.getName()+" 成功！", Toast.LENGTH_SHORT).show();
             }
         });
@@ -91,11 +92,8 @@ public class deleteBookAdapter extends RecyclerView.Adapter<deleteBookAdapter.Vi
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Book book = mBookList.get(position);
-        if (book.getImageId() != -1) {
-            holder.bookImage.setImageResource(book.getImageId());
-        } else {
-            holder.bookImage.setImageBitmap(book.getBitmap().getBitmap());
-        }
+        holder.bookImage.setImageBitmap(book.getBitmap().getBitmap());
+
         holder.bookName.setText(book.getName());
         Log.d(TAG, book.getName());
         holder.progressBar.setMax(book.getNum());

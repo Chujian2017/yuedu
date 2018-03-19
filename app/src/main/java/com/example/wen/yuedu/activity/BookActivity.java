@@ -23,9 +23,9 @@ import java.util.List;
 
 public class BookActivity extends BaseActivity {
     private List<Book> BookList = new ArrayList<>();
-    MyDatabaseHelper dHelper;
+    private MyDatabaseHelper dHelper;
+    private BookAdapter adapter;
     public BookActivity(){}
-    BookAdapter adapter;
     public BookActivity(MyDatabaseHelper dbHelper){
         this.dHelper=dbHelper;
     }
@@ -67,10 +67,11 @@ public class BookActivity extends BaseActivity {
                 int bookNum = cursor.getInt(cursor.getColumnIndex("bookNum"));
                 int readNum = cursor.getInt(cursor.getColumnIndex("readNum"));
                 byte[] blob = cursor.getBlob(cursor.getColumnIndex("image"));
+                int id=cursor.getInt(cursor.getColumnIndex("id"));
                 Bitmap bmp = BitmapFactory.decodeByteArray(blob, 0, blob.length);
                 BitmapDrawable bd = new BitmapDrawable(bmp);
                 String path=cursor.getString(cursor.getColumnIndex("path"));
-                Book book = new Book(name, -1, bookNum,readNum,bd,path);
+                Book book = new Book(name, id, bookNum,readNum,bd,path);
                 BookList.add(book);
             } while (cursor.moveToNext());
         }cursor.close();
