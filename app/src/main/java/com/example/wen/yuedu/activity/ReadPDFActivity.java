@@ -101,7 +101,6 @@ public class ReadPDFActivity extends AppCompatActivity {
         SQLiteDatabase db = dHelper.getWritableDatabase();
         values.put("readNum", readPages);
         db.update("Book", values, "id=?", new String[]{bookId});
-
     }
 
     @Override
