@@ -10,6 +10,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
@@ -28,15 +29,8 @@ public class BookActivity extends BaseActivity {
     private List<Book> BookList;
     private MyDatabaseHelper dHelper;
     private BookAdapter adapter;
-     private Handler handler=new Handler(){
-         public void handleMessage(Message msg){
-             switch (msg.what){
-                 case 1:
-                     initBooks();
-                     adapter.notifyDataSetChanged();
-             }
-         }
-     };
+    private SwipeRefreshLayout swipeRefreshLayout;
+
 
     public BookActivity() {
     }
@@ -49,7 +43,19 @@ public class BookActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book);
+        swipeRefreshLayout=(SwipeRefreshLayout)findViewById(R.id.swipe_refresh);
+        swipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                refreshBooks();
+            }
+        });
+
+
+
         addToolBar();
+        addSliding();
         dHelper = new MyDatabaseHelper(this, "BookStore.db", null, 1);
 
         initBooks();
@@ -63,6 +69,26 @@ public class BookActivity extends BaseActivity {
 
     }
 
+    private void  refreshBooks(){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(300);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                runOnUiThread(new Runnable() {
+                    public void run() {
+                        initBooks();
+                        adapter.notifyDataSetChanged();
+                        swipeRefreshLayout.setRefreshing(false);
+                    }
+                });
+            }
+        }).start();
+    }
+
     @Override
     protected void onRestart() {
         super.onRestart();
@@ -72,11 +98,11 @@ public class BookActivity extends BaseActivity {
         // adapter=new BookAdapter(BookList,BookActivity.this);
         adapter.notifyDataSetChanged(); //刷新
         Log.d("BookActivity", "onRestart: ");*/
-        refresh();
+        //refresh();
     }
 
 
-    public void refresh(){
+    /*public void refresh(){
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -85,7 +111,7 @@ public class BookActivity extends BaseActivity {
                 handler.sendMessage(message);
             }
         }).start();
-    }
+    }*/
 
 
 
@@ -95,6 +121,7 @@ public class BookActivity extends BaseActivity {
         } else {
             BookList.clear();
         }
+
         SQLiteDatabase db = dHelper.getWritableDatabase();
         Cursor cursor = db.query("Book", null, null, null, null, null, null);
         if (cursor.moveToFirst()) {

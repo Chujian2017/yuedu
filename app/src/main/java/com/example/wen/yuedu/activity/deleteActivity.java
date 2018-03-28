@@ -21,6 +21,7 @@ public class deleteActivity extends BaseActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_delete);
         addToolBar();
+        addSliding();
         final MyDatabaseHelper dHelper;
         dHelper=new MyDatabaseHelper(this,"BookStore.db",null,1);
 

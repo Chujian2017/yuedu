@@ -4,7 +4,7 @@ package com.example.wen.yuedu.dialog;
  * Created by wen on 2018/3/11.
  */
 
-import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -17,7 +17,7 @@ import android.view.View.OnClickListener;
 import com.example.wen.yuedu.R;
 import com.example.wen.yuedu.db.MyDatabaseHelper;
 
-public class InputDialog extends AlertDialog implements OnClickListener {
+public class InputDialog extends Dialog implements OnClickListener {
     private EditText etPassword;  //编辑框
     private EditText etName;
     private Button btnConfrim, btnCancel;  //确定取消按钮

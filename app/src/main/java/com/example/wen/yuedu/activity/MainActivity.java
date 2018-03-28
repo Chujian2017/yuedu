@@ -1,8 +1,10 @@
 package com.example.wen.yuedu.activity;
 
+
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+
 import com.example.wen.yuedu.base.BaseActivity;
 import com.example.wen.yuedu.R;
 import com.example.wen.yuedu.adapter.MenusAdapter;
@@ -16,11 +18,14 @@ import java.util.List;
 public class MainActivity extends BaseActivity {
     private List<Menus> MenuList = new ArrayList<>();
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         addToolBar();
+        addSliding();
         initMenu();
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_menu);
         StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(
@@ -30,6 +35,7 @@ public class MainActivity extends BaseActivity {
         recyclerView.setAdapter(adapter);
 
     }
+
     private void initMenu(){
         Menus bookcase = new Menus("我的书架",R.drawable.bookcase);
         MenuList.add(bookcase);
@@ -41,5 +47,4 @@ public class MainActivity extends BaseActivity {
         MenuList.add(exit);
 
     }
-
 }

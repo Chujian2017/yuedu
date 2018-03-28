@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">yuedu</string>
+    <string-array name="feedback_type" >
+        <item>无法导入</item>
+        <item>程序崩溃</item>
+        <item>程序卡顿</item>
+        <item>其他问题</item>
+    </string-array>
     <string name="title_activity_base">BaseActivity</string>
 </resources>

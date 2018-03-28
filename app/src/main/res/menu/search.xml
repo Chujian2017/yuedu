@@ -4,6 +4,7 @@
     <item
         android:id="@+id/action_search"
         android:title="问题反馈"
-        android:icon="@android:drawable/ic_menu_search"
+        android:focusableInTouchMode="false"
+        android:icon="@drawable/feedback"
         app:showAsAction="collapseActionView"/>
 </menu>

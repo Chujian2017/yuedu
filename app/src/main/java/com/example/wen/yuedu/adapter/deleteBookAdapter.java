@@ -5,6 +5,7 @@ package com.example.wen.yuedu.adapter;
  */
 
 
+import android.app.Activity;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.widget.RecyclerView;
@@ -71,6 +72,8 @@ public class deleteBookAdapter extends RecyclerView.Adapter<deleteBookAdapter.Vi
                 String[]bookId={String.valueOf(fruit.getBookId())};
                 db.delete("Book","id=?",bookId);
                 Toast.makeText(view.getContext(), "删除书籍:" + fruit.getName()+" 成功！", Toast.LENGTH_SHORT).show();
+                ((Activity)context).finish();
+
 
 
             }
@@ -84,6 +87,7 @@ public class deleteBookAdapter extends RecyclerView.Adapter<deleteBookAdapter.Vi
                 String[]bookId={String.valueOf(fruit.getBookId())};
                 db.delete("Book","id=?",bookId);
                 Toast.makeText(view.getContext(), "删除书籍:" + fruit.getName()+" 成功！", Toast.LENGTH_SHORT).show();
+                ((Activity)context).finish();
             }
         });
         return holder;

@@ -21,6 +21,7 @@ public class ManagerActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sql);
         addToolBar();
+        addSliding();
         initMenu();
         MyDatabaseHelper dHelper=new MyDatabaseHelper(this,"BookStore.db",null,1);
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_SQLmenu);

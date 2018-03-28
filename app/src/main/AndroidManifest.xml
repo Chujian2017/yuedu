@@ -17,14 +17,7 @@
         android:label="悦读"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <activity
-            android:name=".activity.MainActivity">
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>/>
-        </activity>
+        <activity android:name=".activity.MainActivity" />
         <activity
             android:name=".activity.BookActivity"
             android:label="我的书架" />
@@ -46,7 +39,15 @@
         </provider>
 
         <activity android:name=".activity.ReadPDFActivity" />
-        <activity android:name=".activity.AddPDFActivity"></activity>
+        <activity android:name=".activity.AddPDFActivity" />
+        <activity android:name=".activity.startActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activity.feedbackActivity"></activity>
     </application>
 
 </manifest>
